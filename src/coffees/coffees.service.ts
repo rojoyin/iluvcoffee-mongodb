@@ -8,4 +8,10 @@ export class CoffeesService {
   constructor(
     @InjectModel(Coffee.name) private readonly coffeeModel: Model<Coffee>,
   ) {}
+
+
+  findAll() {
+    return this.coffeeModel.find().exec();
+  }
+
 }
