@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CoffeesService } from './coffees.service';
-import { getModelToken } from '@nestjs/mongoose';
 
 describe('CoffeesService', () => {
   let service: CoffeesService;
