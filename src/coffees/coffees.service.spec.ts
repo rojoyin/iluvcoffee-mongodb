@@ -9,7 +9,7 @@ describe('CoffeesService', () => {
       providers: [
         CoffeesService,
         {
-          provide: 'CoffeeModel',
+          provide: 'CoffeeModel', // TODO: how to improve this injection here
           useValue: {},
         },
       ],
