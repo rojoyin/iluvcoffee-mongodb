@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Coffee } from './entities/coffee.entity';
 import { Model } from 'mongoose';
+import {CreateCoffeeDto} from "./dtos/create-coffee.dto";
 
 @Injectable()
 export class CoffeesService {
@@ -20,4 +21,10 @@ export class CoffeesService {
     }
     return coffee;
   }
+
+  create(createCoffeeDto: CreateCoffeeDto) {
+    const coffee = new this.coffeeModel(createCoffeeDto);
+    return coffee.save();
+  }
+
 }
