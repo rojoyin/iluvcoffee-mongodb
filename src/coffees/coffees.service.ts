@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Coffee } from './entities/coffee.entity';
 import { Model } from 'mongoose';
 import { CreateCoffeeDto } from './dtos/create-coffee.dto';
+import {UpdateCoffeeDto} from "./dtos/update-coffe.dto";
 
 @Injectable()
 export class CoffeesService {
@@ -25,5 +26,16 @@ export class CoffeesService {
   create(createCoffeeDto: CreateCoffeeDto) {
     const coffee = new this.coffeeModel(createCoffeeDto);
     return coffee.save();
+  }
+
+  async update(id: string, updateCoffeeDto: UpdateCoffeeDto) {
+    const existingCoffee = await this.coffeeModel
+        .findOneAndUpdate({ _id: id }, { $set: updateCoffeeDto }, { new: true })
+        .exec();
+
+    if (!existingCoffee) {
+      throw new NotFoundException(`Coffee #${id} not found`);
+    }
+    return existingCoffee;
   }
 }
