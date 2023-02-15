@@ -1,3 +1,1 @@
-export class UpdateCoffeeDto {
-
-}
+export class UpdateCoffeeDto {}
